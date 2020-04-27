@@ -1,0 +1,32 @@
+# Version 0.1.0
+
+enum UserType {
+    ADMIN
+    MODERATOR
+    USER
+}
+
+type User {
+    id: ID! @id
+    email: String! @unique
+    password: String!
+    name: String!
+    pseudo: String!
+    phone: String!
+    userType: UserType! @default(value: USER)
+
+    favoriteExperts: [User!]! @relation(name: "FavoriteExpertsByUser", link: TABLE)
+
+    savedReplays: [Replay!]!
+
+    blogs: [Blog!]! @relation(name: "UserBlog", link: TABLE)
+    likedBlogs: [Blog!]! @relation(name: "LikedBlog", link: TABLE)
+
+    appointments: [Appointment!]!
+
+    isExpert: Boolean! @default(value: false)
+    price: Float! @default(value: 0.0)
+    note: Int
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
