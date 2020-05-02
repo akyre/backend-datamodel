@@ -1,4 +1,4 @@
-# Version 0.1.0
+# Version 0.2.0
 
 enum UserType {
     ADMIN
@@ -10,8 +10,8 @@ type User {
     id: ID! @id
     email: String! @unique
     password: String!
-    name: String!
-    pseudo: String!
+    firstname: String!
+    lastname: String!
     phone: String!
     userType: UserType! @default(value: USER)
 
@@ -21,12 +21,19 @@ type User {
 
     blogs: [Blog!]! @relation(name: "UserBlog", link: TABLE)
     likedBlogs: [Blog!]! @relation(name: "LikedBlog", link: TABLE)
+    commentedBlogs: [Blog!]! @relation(name: "CommentedBlog", link: TABLE)
 
     appointments: [Appointment!]!
 
-    isExpert: Boolean! @default(value: false)
+    expert: Expert
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Expert {
     price: Float! @default(value: 0.0)
     note: Int
+    cv: CV!
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
 }
