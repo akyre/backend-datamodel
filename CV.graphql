@@ -1,4 +1,4 @@
-# Version 0.2.0
+# Version 0.2.1
 
 enum Degree {
     L1,
@@ -13,6 +13,8 @@ type UserCompentency {
 
     compentency: Compentency! @relation(link: INLINE)
     numberOfYears: Int!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
 }
 
 type Experience {
@@ -24,6 +26,8 @@ type Experience {
     position: String!
 
     shortDescriptionOfWork: String!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
 }
 
 type Training {
@@ -37,6 +41,8 @@ type Training {
     endYear: Int!
 
     description: String
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
 }
 
 type CV {
@@ -48,4 +54,6 @@ type CV {
     competencies: [UserCompentency!]
     experiences: [Experience!]
     training: [Training!]
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
 }
