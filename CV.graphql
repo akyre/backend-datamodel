@@ -1,0 +1,50 @@
+# Version 0.1.1
+
+enum Degree {
+    L1,
+    L2,
+    L3,
+    M1,
+    M2
+}
+
+type Compentency {
+    id: ID! @id
+
+    name: String!
+    numberOfYears: Int!
+}
+
+type Experience {
+    id: ID! @id
+
+    enterpriseName: String!
+    enterpriseDescription: String!
+    position: String!
+
+    shortDescriptionOfWork: String!
+}
+
+type Training {
+    id: ID! @id
+
+    name: String!
+    schoolName: String!
+
+    degree: Degree!
+    startYear: Int!
+    endYear: Int!
+
+    description: String!
+}
+
+type CV {
+    id: ID! @id
+
+    catchSentence: String!
+    description: String!
+
+    competencies: [Competency!]
+    experiences: [Experience!]
+    training: [Training!]
+}
