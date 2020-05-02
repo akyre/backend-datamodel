@@ -1,22 +1,40 @@
-# Version 0.1.0
+# Version 0.2.0
+
+enum Status {
+    PRIVATE
+    DELETED
+    BANNED
+    INREVIEW
+    PUBLISHED
+}
 
 type Blog {
     id: ID! @id
     author: User!
     title: String!
-    slug: String!
+    catchPhrase: String!
     content: String! # HTML? Markdown? PlainText?
     thumbnail: String!
     comments: [Comment!]!
     likes: [User!]! @relation(name: "UserThatLiked", link: TABLE)
-    note: Int
     language: String!
-    status: String!
+    status: Status!
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
 }
 
 type Comment {
+    id: ID! @id
+    author: User!
+    content: String!
+    likes: [User!]! @relation(name: "UserThatLiked")
+    repsonses: [Response!]!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Response {
+    id: ID! @id
     author: User!
     content: String!
     createdAt: DateTime! @createdAt
