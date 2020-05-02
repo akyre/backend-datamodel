@@ -1,4 +1,4 @@
-# Version 0.1.1
+# Version 0.2.0
 
 enum Degree {
     L1,
@@ -8,10 +8,10 @@ enum Degree {
     M2
 }
 
-type Compentency {
+type UserCompentency {
     id: ID! @id
 
-    name: String!
+    compentency: Compentency! @relation(link: INLINE)
     numberOfYears: Int!
 }
 
@@ -20,6 +20,7 @@ type Experience {
 
     enterpriseName: String!
     enterpriseDescription: String!
+    enterpriseLocation: String!
     position: String!
 
     shortDescriptionOfWork: String!
@@ -31,11 +32,11 @@ type Training {
     name: String!
     schoolName: String!
 
-    degree: Degree!
+    degree: Degree
     startYear: Int!
     endYear: Int!
 
-    description: String!
+    description: String
 }
 
 type CV {
@@ -44,7 +45,7 @@ type CV {
     catchSentence: String!
     description: String!
 
-    competencies: [Competency!]
+    competencies: [UserCompentency!]
     experiences: [Experience!]
     training: [Training!]
 }
